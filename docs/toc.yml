@@ -1,0 +1,63 @@
+- name: Introduction
+  href: getting-started.md
+  items:
+  - name: Getting Started
+    href: getting-started.md
+  - name: About Structurizr and how it compares to other tooling
+    href: https://structurizr.com/help/about
+  - name: Basic concepts
+    href: https://structurizr.com/help/concepts (workspaces, models, views and documentation)
+  - name: C4 model
+    href: https://structurizr.com/help/c4
+  - name: Binaries
+    href: binaries.md
+  - name: API Client
+    href: api-client.md
+  - name: Usage patterns
+    href: usage-patterns.md
+- name: Diagrams
+  items:
+  - name: System Context diagram
+    href: system-context-diagram.md
+  - name: Container diagram
+    href: container-diagram.md
+  - name: Component diagram
+    href: component-diagram.md
+  - name: Dynamic diagram
+    href: dynamic-diagram.md
+  - name: Deployment diagram
+    href: deployment-diagram.md
+  - name: Enterprise Context diagram
+    href: enterprise-context-diagram.md
+  - name: Styling elements
+    href: styling-elements.md
+  - name: Styling relationships
+    href: styling-relationships.md
+  - name: Filtered views
+    href: filtered-views.md
+- name: Documentation
+  items:
+  - name: Documentation overview
+    href: documentation.md
+  - name: Structurizr
+    href: documentation-structurizr.md
+  - name: arc42
+    href: documentation-arc42.md
+  - name: Viewpoints and Perspectives
+    href: documentation-viewpoints-and-perspectives.md
+- name: Extracting software architecture information from code
+  items:
+  - name: Structurizr annotations
+    href: structurizr-annotations.md
+- name: Exporting and visualising with other tools
+  items:
+  - name: PlantUML
+    href: plantuml.md
+  - name: DGML
+    href: https://github.com/merijndejonge/Structurizr.Dgml
+- name: Other
+  items:
+  - name: Client-side encryption
+    href: client-side-encryption.md
+  - name: Corporate branding
+    href: corporate-branding.md
