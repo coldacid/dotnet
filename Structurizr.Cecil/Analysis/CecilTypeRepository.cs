@@ -76,14 +76,39 @@ namespace Structurizr.Analysis
         /// <inheritdoc />
         public TypeDefinition GetType(string typeName)
         {
+            typeName = UnmangleTypeName(typeName);
             Func<TypeDefinition, bool> predicate;
             var split = typeName.Split(new[] { ", " }, 2, StringSplitOptions.RemoveEmptyEntries);
             if (split.Length == 2)
+            {
+                // Treat compiler-generated types as their containing class
                 predicate = t => t.FullName == split[0] && t.Module.Assembly.FullName == split[1];
+            }
             else
+            {
                 predicate = t => t.FullName == typeName;
+            }
 
             return _types.Values.SingleOrDefault(predicate);
+        }
+
+        /// <summary>
+        /// Takes compiler-generated type names and converts them back to their developer-written type names.
+        /// </summary>
+        /// <param name="typeName">The name of the compiler-generated or fulfilled generic type to make friendly.</param>
+        /// <returns>The developer-written type from which the compiler-generated or fulfilled type was created.</returns>
+        private string UnmangleTypeName(string typeName)
+        {
+            // Return typeName as-is if it doesn't need processing
+            if (!(typeName.Contains("/<") || typeName.Contains('`'))) return typeName;
+
+            // Remove auto-generated class name for generators, lambdas, asyncs, etc.
+            typeName = Regex.Replace(typeName, @"\/\<[^,]+", "");
+
+            // Remove generic type parameters
+            typeName = Regex.Replace(typeName, @"`(?<count>\d+)\[[^\]]+\]", "`${count}");
+
+            return typeName;
         }
 
         /// <inheritdoc />
