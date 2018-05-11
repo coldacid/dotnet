@@ -192,6 +192,21 @@ namespace Structurizr.Analysis
 
             string destinationTypeName = destinationType.GetAssemblyQualifiedName();
             Component destination = ComponentFinder.Container.GetComponentOfType(destinationTypeName);
+            if (destination == null)
+            {
+                var matchingComponents = ComponentFinder.Container.Components
+                    .Where(c => c.CodeElements.Any(e => e.Type == destinationTypeName))
+                    .ToList();
+                if (matchingComponents.Count == 1)
+                {
+                    destination = matchingComponents[0];
+                }
+                else if (matchingComponents.Count > 1)
+                {
+                    Console.WriteLine("Could not find component with " + destinationType.FullName + " for component " + component.Name + ": Multiple possible matches");
+                    return;
+                }
+            }
             if (destination != null)
             {
                 IList<Relationship> relationships = component.Relationships
