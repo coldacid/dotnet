@@ -204,6 +204,8 @@ namespace Structurizr.Analysis
                 else if (matchingComponents.Count > 1)
                 {
                     Console.WriteLine("Could not find component with " + destinationType.FullName + " for component " + component.Name + ": Multiple possible matches");
+                    foreach (var matchingComponent in matchingComponents)
+                        Console.WriteLine("\t* " + matchingComponent.CanonicalName);
                     return;
                 }
             }
